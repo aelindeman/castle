@@ -1,0 +1,1 @@
+../../vendor/venturecraft/revisionable/src/migrations/2013_04_09_062329_create_revisions_table.php

@@ -1,0 +1,14 @@
+@import (once) 'vars.less';
+
+.label {
+	display: inline-block;
+}
+
+.item-viewer header {
+	ul {
+		&:extend(.list-unstyled);
+	}
+	ul ul {
+		padding-left: @padding-base-horizontal;
+	}
+}

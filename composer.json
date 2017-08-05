@@ -1,0 +1,69 @@
+{
+    "name": "aelindeman/castle",
+    "description": "A platform for client and internal data and documentation storage",
+    "license": "proprietary",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.2.*",
+        "laravel/socialite": "^2.0",
+        "graham-campbell/markdown": "^6.0",
+        "league/commonmark-extras": "^0.1.1",
+        "nicolaslopezj/searchable": "^1.7",
+        "venturecraft/revisionable": "^1.27"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^2.0",
+        "doctrine/dbal": "~2.3",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0",
+        "symfony/css-selector": "2.8.*|3.0.*",
+        "symfony/dom-crawler": "2.8.*|3.0.*"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "Castle\\": "app/"
+        },
+        "files": [
+            "app/Http/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "scripts": {
+        "setup": [
+            "@post-root-package-install",
+            "@post-create-project-cmd",
+            "@post-install-cmd",
+            "php artisan migrate --seed",
+            "php artisan app:superuser"
+        ],
+        "post-root-package-install": [
+            "php -r \"if (!file_exists('.env')) copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate",
+            "php -r \"if (!file_exists('./database/database.sqlite')) touch('./database/database.sqlite');\""
+        ],
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ],
+        "pre-update-cmd": [
+            "php artisan clear-compiled"
+        ],
+        "post-update-cmd": [
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

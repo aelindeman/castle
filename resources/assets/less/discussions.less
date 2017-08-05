@@ -1,0 +1,21 @@
+@import (once) 'vars.less';
+
+.discussion-item.archived {
+	opacity: 0.5;
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.item-vote-buttons.discussion-vote-buttons {
+	.item-vote-button, .item-vote-score {
+		padding: @padding-small-vertical @padding-small-horizontal;
+		display: inline-block;
+	}
+	.item-vote-score {
+		background-color: transparent;
+		font-size: @font-size-large;
+		font-weight: bold;
+		line-height: 1;
+	}
+}

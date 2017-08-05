@@ -1,0 +1,32 @@
+@import (once) 'vars.less';
+
+.comment-item {
+	.comment-vote-button {
+		&:first-of-type {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		&:last-of-type {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	}
+	header {
+		font-size: @font-size-small;
+		position: relative;
+		.action-bar {
+			background-color: #fff;
+			border: 2px solid #fff;
+			border-radius: @btn-border-radius-small;
+			position: absolute;
+			top: -2px;
+			right: -2px;
+			display: none;
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+	}
+	&:hover .action-bar {
+		display: block;
+	}
+}

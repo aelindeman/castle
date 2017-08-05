@@ -1,0 +1,44 @@
+@import (once) 'vars.less';
+
+.document-toc {
+	font-size: @font-size-small;
+	padding-top: @padding-small-vertical;
+	.nav {
+		> li {
+			> a {
+				padding: 3px @padding-small-horizontal;
+			}
+			&.active > a {
+				background-color: @gray-lighter;
+				font-weight: bold;
+			}
+		}
+		.nav {
+			> li > a {
+				padding-left: @padding-small-horizontal * 2;
+			}
+			.nav {
+				> li > a {
+					padding-left: @padding-small-horizontal * 3;
+				}
+			}
+		}
+	}
+	@media print {
+		display: none;
+	}
+}
+
+.document-content {
+	:first-child {
+		margin-top: 0;
+	}
+	a[href^="http"], a[href^="//"] {
+		&::after {
+			&:extend(.glyphicon);
+			font-size: 75%;
+			padding-left: 4px;
+			content: '\e164';
+		}
+	}
+}

@@ -1,0 +1,199 @@
+@import 'selectize/selectize.bootstrap3.less';
+
+@import (once) 'vars.less';
+
+.action-bar {
+	.clearfix;
+	margin-bottom: @padding-base-vertical;
+	margin-top: @padding-base-vertical;
+	@media (min-width: @screen-sm) {
+		&-left {
+			text-align: left;
+		}
+		&-right {
+			text-align: right;
+		}
+	}
+	@media print {
+		display: none;
+	}
+}
+
+header > .action-bar {
+	margin-bottom: 0;
+	text-align: right;
+}
+
+.item-editor, .item-viewer {
+	.form-control.mono-text {
+		font-family: @font-family-monospace;
+		font-size: @font-size-small;
+		line-height: @line-height-small;
+	}
+	.editor-help {
+		font-size: @font-size-xs;
+	}
+}
+
+.item-viewer {
+	.resource-viewer textarea.form-control {
+		height: @input-height-base;
+		min-height: @input-height-base;
+		resize: vertical;
+	}
+}
+
+.item-vote-buttons {
+	display: inline-block;
+	.item-vote-button, .item-vote-score {
+		.btn;
+		background-color: @gray-lighter;
+		display: block;
+		margin: 0;
+		padding: @padding-xs-vertical @padding-xs-horizontal;
+		text-align: center;
+		&.active {
+			.btn-info;
+		}
+		&:hover, &:focus { color: inherit; }
+	}
+	.item-vote-button:hover {
+		background-color: darken(@gray-lighter, 10%);
+	}
+	.item-vote-score {
+		cursor: inherit;
+		&:active {
+			box-shadow: none;
+		}
+		&:not(:only-child) {
+			border-radius: 0;
+		}
+	}
+}
+
+// Markdown editor
+.md-editor {
+	> .md-header {
+		&:extend(.action-bar);
+		.btn .glyphicon-search {
+			display: none;
+		}
+	}
+	> .md-preview {
+		min-height: 10px;
+		overflow: auto;
+	}
+	.md-controls {
+		&:extend(.btn-group);
+		&:extend(.pull-right);
+		.md-control {
+			&:extend(.btn);
+			&:extend(.btn-sm);
+			color: @gray-light;
+			&:hover {
+				color: @gray-darker;
+			}
+		}
+	}
+	&.md-fullscreen-mode {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 99999;
+		padding: (@padding-large-vertical * 3) @padding-large-horizontal (@padding-large-vertical * 2) ;
+		background: #fff;
+		border: 0;
+		.md-input,
+		.md-preview {
+			margin: 0 auto;
+			height: 100%;
+			font-size: 20px;
+			padding: 20px;
+			color: @input-color;
+			line-height: 1.6em;
+			resize: none;
+			box-shadow: none;
+			background: #fff;
+			border: 0;
+		}
+		.md-preview {
+			overflow: auto;
+		}
+		.md-header {
+			background: none;
+			text-align: center;
+			position: fixed;
+			width: 100%;
+			top: 20px;
+		}
+		.btn-group {
+			float: none;
+		}
+		.btn {
+			border: 0;
+			background: none;
+			color: @gray-light;
+			&:hover,
+			&:focus,
+			&.active {
+				box-shadow: none;
+				color: @gray-dark;
+			}
+		}
+		.md-controls {
+			display: none;
+		}
+		.md-fullscreen-controls {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			text-align: right;
+			z-index: 1002;
+			display: block;
+			a {
+				clear: right;
+				margin: 10px;
+				width: 30px;
+				height: 30px;
+				text-align: center;
+			}
+		}
+		.md-editor {
+			height: 100% !important;
+			position: relative;
+		}
+	}
+
+	.md-fullscreen-controls {
+		display: none;
+	}
+}
+
+// Selectize fixes
+@selectize-border: 2px solid @input-border;
+.selectize-input {
+	&:extend(.form-control);
+	&.focus {
+		.box-shadow(none);
+		&:extend(.form-control:focus);
+	}
+}
+.selectize-input > .item,
+.selectize-control.multi .selectize-input > .item {
+	.selectize-border-radius(@selectize-border-radius - 1px);
+	color: #fff;
+	background-color: @gray-light;
+	font-weight: bold;
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+}
+.has-error .selectize-input {
+	&:extend(.has-error .form-control);
+}
+
+// Other fixes
+input[type="file"] {
+	width: 100%;
+}
